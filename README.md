@@ -91,11 +91,11 @@ Located in `ar_virtual_companion/`.
 
 ### Key Features
 - **AR Interaction**: Render 3D `.glb` avatars in augmented reality using a customized `ar_flutter_plugin_2`.
-- **Local Model Caching**: 3D models fetched from Supabase Storage are cached locally (10-year TTL) to minimize network egress and ensure instant AR loading times.
+- **Local Model Caching**: 3D models fetched from Supabase Storage are cached locally (10-year TTL) to minimize network egress and ensure instant AR loading times. Includes dynamic GLB height metrics estimation.
 - **Real-time Voice Chat**: Low-latency PCM streaming playback (via SoLoud) connected to the backend's WebSocket.
 - **Onboarding & Customization**: 3-step setup (Profile -> Persona Quiz -> Avatar Selection).
 - **Journal & Analytics**: Daily mood tracking, journal entries (saved to Supabase), and weekly/monthly mood insights.
-- **State Management & Services**: Built with `Riverpod` and `Provider`. Includes push notifications and local caching service.
+- **State Management & Services**: Built with `Riverpod` and `Provider`. Includes push notifications (scheduled daily/birthday/care messages), object detection (ML Kit), data export, and local caching services.
 
 ### Setup & Run
 ```bash
@@ -112,10 +112,11 @@ flutter run
 Located in `AI companion Backend hugging face space/`.
 
 ### Key Features
-- **Real-time Streaming**: `WS /v1/chat/live` endpoint for low-latency voice and text streaming via Gemini Live.
-- **Dynamic Persona & RAG**: Automatically constructs context-rich prompts (`ai_logic.py`) based on user profiles, recent conversations, and embedded memory facts.
-- **Memory Engine**: Periodically summarizes and indexes long-term facts using Groq and Jina Embeddings (`memory_logic.py`, `embedding_logic.py`).
+- **Real-time Streaming**: `WS /v1/chat/live` endpoint for low-latency voice and text streaming via Gemini Live. Includes concurrent audio/text processing and client transcript relay.
+- **Dynamic Persona & RAG**: Automatically constructs context-rich prompts (`ai_logic.py`) based on user profiles, recent conversations, and embedded memory facts. Features low-latency RAG injection while the user is still speaking.
+- **Memory Engine**: Periodically summarizes and indexes long-term facts using Groq (Llama 3.1) and Jina Embeddings (`memory_logic.py`, `embedding_logic.py`).
 - **Comfort System**: Analyzes journal entries to generate empathetic, persona-aligned comfort messages.
+- **Caching & Pre-fetching**: Implements `cache_logic.py` to pre-load system prompts and user profiles to reduce latency during active sessions. Contains Thread-safe Database operations.
 
 ### Environment Variables
 | Variable | Required | Purpose |
@@ -140,16 +141,11 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 ---
 
-## 🤖 CI/CD (Hugging Face Deployment)
 
-The backend is configured to be easily deployed to Hugging Face Spaces via Docker. 
-A GitHub Action (can be configured in `.github/workflows/`) automatically syncs the `AI companion Backend hugging face space/` directory to the Hugging Face Space upon pushing to the `main` branch.
-
----
 
 ## 🛠️ Tech Stack
 
-**Frontend**: Flutter, Dart, Riverpod, `ar_flutter_plugin_2`, Google ML Kit (Object Detection)
+**Frontend**: Flutter, Dart, Riverpod, `ar_flutter_plugin_2`
 **Backend**: Python 3.11, FastAPI, Uvicorn, WebSockets
 **AI / ML**: Google GenAI SDK (Gemini Live), Groq SDK (LLaMA 3), Jina Embeddings
 **Database / Storage**: Supabase (PostgreSQL, Auth, Storage)
