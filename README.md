@@ -14,25 +14,46 @@ This project was developed as a Final Year Project (FYP) for COMP S456F.
 
 ---
 
-## 📸 Screenshots & Demo
+## 📸 App Screenshots
 
-*(Scroll right to view more features)*
-<div style="display: flex; overflow-x: auto; gap: 10px; padding: 10px 0;">
-  <img src="assets/screenshots/FYPapp4.jpg" height="400" alt="Home Screen" />
-  <img src="assets/screenshots/FYPapp5.jpg" height="400" alt="AR Interaction" />
-  <img src="assets/screenshots/FYPapp6.jpg" height="400" alt="Calendar/Journal" />
-  <img src="assets/screenshots/FYPapp7.jpg" height="400" alt="Insights" />
-  <img src="assets/screenshots/FYPapp1.jpg" height="400" alt="Login Screen" />
-  <img src="assets/screenshots/FYPapp2.jpg" height="400" alt="Profile Setup" />
-  <img src="assets/screenshots/FYPapp3.jpg" height="400" alt="Persona Quiz" />
-  <img src="assets/screenshots/FYPapp8.jpg" height="400" alt="Settings" />
-  <!-- Add more images here like this: -->
-  <!-- <img src="assets/screenshots/FYPapp9.jpg" height="400" alt="Feature Name" /> -->
+Here is a glimpse of the AR Virtual Companion's user interface and core features:
+
+### 1. Onboarding & Personalization
+<div align="center">
+  <img src="assets/screenshots/FYPapp1.jpg" width="220" alt="Login Screen" />
+  <img src="assets/screenshots/FYPapp2.jpg" width="220" alt="Profile Setup" />
+  <img src="assets/screenshots/FYPapp10.jpg" width="220" alt="Persona Quiz" />
+</div>
+<div align="center">
+  <img src="assets/screenshots/FYPapp12.jpg" width="220" alt="Select Female Avatar" />
+  <img src="assets/screenshots/FYPapp13.jpg" width="220" alt="Select Male Avatar" />
+  <img src="assets/screenshots/FYPapp20.jpg" width="220" alt="Personalization AI" />
+</div>
+
+### 2. Dashboard & User Profile
+<div align="center">
+  <img src="assets/screenshots/FYPapp3.jpg" width="220" alt="Home Screen" />
+  <img src="assets/screenshots/FYPapp24.jpg" width="220" alt="User Profile" />
+  <img src="assets/screenshots/FYPapp23.jpg" width="220" alt="Memory Page" />
+</div>
+
+### 3. AR Interaction
+<div align="center">
+  <img src="assets/screenshots/FYPapp5.jpg" width="220" alt="AR Screen" />
+  <img src="assets/screenshots/FYPapp14.jpg" width="220" alt="AR Actions" />
+  <img src="assets/screenshots/FYPapp16.jpg" width="220" alt="AR Settings" />
+</div>
+
+### 4. Journal & Insights
+<div align="center">
+  <img src="assets/screenshots/FYPapp8.jpg" width="220" alt="Insights" />
+  <img src="assets/screenshots/FYPapp18.jpg" width="220" alt="write Journal" />
+  <img src="assets/screenshots/FYPapp7.jpg" width="220" alt="Calendar Journal" />
 </div>
 
 ---
 
-## �� Live Demo & Hosting
+## 🚀 Live Demo & Hosting
 
 - **Backend API (Hosted on Hugging Face)**: [Your Hugging Face Space URL Here]
 - **Database & Auth**: Supabase
