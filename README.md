@@ -55,7 +55,7 @@ Here is a glimpse of the AR Virtual Companion's user interface and core features
 
 ## 🚀 Live Demo & Hosting
 
-- **Backend API (Hosted on Hugging Face)**: [Your Hugging Face Space URL Here]
+- **Backend API (Hosted on Hugging Face)**: [Hugging Face Space Repository](https://huggingface.co/spaces/samlam123/Ai_companion/tree/main)
 - **Database & Auth**: Supabase
 
 ---
