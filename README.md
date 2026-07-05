@@ -4,6 +4,9 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![Gemini](https://img.shields.io/badge/Gemini-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq-F55036?style=for-the-badge&logo=groq&logoColor=white)
+![Jina AI](https://img.shields.io/badge/Jina_AI-009191?style=for-the-badge&logo=jina&logoColor=white)
 
 A comprehensive mobile AI companion application featuring AR character interaction, real-time voice chat, persona onboarding, diary/journal tracking, and a memory-aware AI backend generation system. 
 
@@ -11,7 +14,29 @@ This project was developed as a Final Year Project (FYP) for COMP S456F.
 
 ---
 
-## 🚀 Live Demo & Hosting
+## 📸 Screenshots & Demo
+
+<div align="center">
+  <p><b>✨ Core Features</b></p>
+  <img src="assets/screenshots/FYPapp4.jpg" width="200" alt="Home Screen" />
+  <img src="assets/screenshots/FYPapp5.jpg" width="200" alt="AR Interaction" />
+  <img src="assets/screenshots/FYPapp6.jpg" width="200" alt="Calendar/Journal" />
+  <img src="assets/screenshots/FYPapp7.jpg" width="200" alt="Insights" />
+</div>
+
+<br>
+
+<div align="center">
+  <p><b>🚀 Onboarding & Customization</b></p>
+  <img src="assets/screenshots/FYPapp1.jpg" width="200" alt="Login Screen" />
+  <img src="assets/screenshots/FYPapp2.jpg" width="200" alt="Profile Setup" />
+  <img src="assets/screenshots/FYPapp3.jpg" width="200" alt="Persona Quiz" />
+  <img src="assets/screenshots/FYPapp8.jpg" width="200" alt="Settings" />
+</div>
+
+---
+
+## �� Live Demo & Hosting
 
 - **Backend API (Hosted on Hugging Face)**: [Your Hugging Face Space URL Here]
 - **Database & Auth**: Supabase
