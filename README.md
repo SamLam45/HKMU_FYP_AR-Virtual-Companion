@@ -16,22 +16,18 @@ This project was developed as a Final Year Project (FYP) for COMP S456F.
 
 ## 📸 Screenshots & Demo
 
-<div align="center">
-  <p><b>✨ Core Features</b></p>
-  <img src="assets/screenshots/FYPapp4.jpg" width="200" alt="Home Screen" />
-  <img src="assets/screenshots/FYPapp5.jpg" width="200" alt="AR Interaction" />
-  <img src="assets/screenshots/FYPapp6.jpg" width="200" alt="Calendar/Journal" />
-  <img src="assets/screenshots/FYPapp7.jpg" width="200" alt="Insights" />
-</div>
-
-<br>
-
-<div align="center">
-  <p><b>🚀 Onboarding & Customization</b></p>
-  <img src="assets/screenshots/FYPapp1.jpg" width="200" alt="Login Screen" />
-  <img src="assets/screenshots/FYPapp2.jpg" width="200" alt="Profile Setup" />
-  <img src="assets/screenshots/FYPapp3.jpg" width="200" alt="Persona Quiz" />
-  <img src="assets/screenshots/FYPapp8.jpg" width="200" alt="Settings" />
+*(Scroll right to view more features)*
+<div style="display: flex; overflow-x: auto; gap: 10px; padding: 10px 0;">
+  <img src="assets/screenshots/FYPapp4.jpg" height="400" alt="Home Screen" />
+  <img src="assets/screenshots/FYPapp5.jpg" height="400" alt="AR Interaction" />
+  <img src="assets/screenshots/FYPapp6.jpg" height="400" alt="Calendar/Journal" />
+  <img src="assets/screenshots/FYPapp7.jpg" height="400" alt="Insights" />
+  <img src="assets/screenshots/FYPapp1.jpg" height="400" alt="Login Screen" />
+  <img src="assets/screenshots/FYPapp2.jpg" height="400" alt="Profile Setup" />
+  <img src="assets/screenshots/FYPapp3.jpg" height="400" alt="Persona Quiz" />
+  <img src="assets/screenshots/FYPapp8.jpg" height="400" alt="Settings" />
+  <!-- Add more images here like this: -->
+  <!-- <img src="assets/screenshots/FYPapp9.jpg" height="400" alt="Feature Name" /> -->
 </div>
 
 ---
