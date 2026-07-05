@@ -68,7 +68,7 @@ This repository is structured as a **Monorepo** containing both the Flutter fron
 .
 ├── ar_virtual_companion/       # Mobile App (Flutter)
 │   ├── lib/                    # Frontend source code
-│   ├── assets/                 # 3D models (.glb), images, icons
+│   ├── assets/                 # App icons, local placeholder images
 │   └── pubspec.yaml
 └── AI companion Backend hugging face space/ # Backend API (FastAPI)
     ├── main.py                 # API entry point
@@ -91,10 +91,11 @@ Located in `ar_virtual_companion/`.
 
 ### Key Features
 - **AR Interaction**: Render 3D `.glb` avatars in augmented reality using a customized `ar_flutter_plugin_2`.
+- **Local Model Caching**: 3D models fetched from Supabase Storage are cached locally (10-year TTL) to minimize network egress and ensure instant AR loading times.
 - **Real-time Voice Chat**: Low-latency PCM streaming playback (via SoLoud) connected to the backend's WebSocket.
 - **Onboarding & Customization**: 3-step setup (Profile -> Persona Quiz -> Avatar Selection).
 - **Journal & Analytics**: Daily mood tracking, journal entries (saved to Supabase), and weekly/monthly mood insights.
-- **State Management**: Built with `Riverpod` and `Provider`.
+- **State Management & Services**: Built with `Riverpod` and `Provider`. Includes push notifications and local caching service.
 
 ### Setup & Run
 ```bash
