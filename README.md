@@ -14,6 +14,12 @@ This project was developed as a Final Year Project (FYP) for COMP S456F.
 
 ---
 
+## 🎥 Video Demo
+
+[![Watch the video](https://img.youtube.com/vi/YOUR_YOUTUBE_VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=SFbLtfeLPjA)
+
+---
+
 ## 📸 App Screenshots
 
 Here is a glimpse of the AR Virtual Companion's user interface and core features:
