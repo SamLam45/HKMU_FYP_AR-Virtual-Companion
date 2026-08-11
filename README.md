@@ -16,7 +16,9 @@ This project was developed as a Final Year Project (FYP) for COMP S456F.
 
 ## 🎥 Video Demo
 
-[![Watch the video]](https://www.youtube.com/watch?v=SFbLtfeLPjA)
+[![Watch the video](https://img.youtube.com/vi/SFbLtfeLPjA/maxresdefault.jpg)](https://youtu.be/SFbLtfeLPjA)
+
+[Watch on YouTube](https://youtu.be/SFbLtfeLPjA)
 
 ---
 
