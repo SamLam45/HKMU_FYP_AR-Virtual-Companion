@@ -1,14 +1,11 @@
-﻿---
-title: Ai Companion
-emoji: 🏆
-colorFrom: pink
-colorTo: red
+---
+title: AI Companion Backend
 sdk: docker
-pinned: false
-short_description: AI AR backend API
 ---
 
 # AI Companion Backend (FastAPI)
+
+[English](README.md) | [中文版](README_zh.md)
 
 This backend powers the AR AI companion app. It loads user profile and memory context from Supabase, builds a dynamic system prompt, streams real-time audio chat through Gemini Live, and exposes memory/persona APIs.
 
@@ -23,7 +20,7 @@ This backend powers the AR AI companion app. It loads user profile and memory co
 ## Quick start
 
 ```bash
-cd "AI companion Backend huggingface"
+cd "AI companion Backend hugging face space"
 pip install -r requirements.txt
 # set required env vars
 uvicorn main:app --host 0.0.0.0 --port 8000
@@ -49,6 +46,8 @@ Health check: `GET /health`
 - `GET /v1/chat/prepare?user_id=...&force_refresh=false`
 - `WS /v1/chat/live?user_id=...`
 
+The live WebSocket accepts PCM audio, text input, system updates, and JPEG image messages. It returns audio bytes, transcripts, user transcripts, and text messages.
+
 ### Memory/Admin
 - `POST /v1/memory/index/backfill`
 - `GET /v1/memory/index/backfill/status`
@@ -56,6 +55,8 @@ Health check: `GET /health`
 
 ### Persona
 - `POST /v1/persona/analyze`
+
+The backend currently does not expose `/v1/chat/voice` or `/v1/chat/gemini_live_once`; those legacy client helpers are not part of the supported API surface.
 
 ## Runtime flow (high level)
 
@@ -153,4 +154,5 @@ Health check: `GET /health`
 - This repo is configured for Docker Spaces.
 - `Dockerfile` runs `uvicorn main:app --host 0.0.0.0 --port 7860`.
 - Add all environment variables in Space Settings.
+- Configure Supabase Row Level Security so users can only access their own profiles, journals, and memories.
 - Reference: https://huggingface.co/docs/hub/spaces-config-reference

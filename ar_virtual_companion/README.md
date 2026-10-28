@@ -1,5 +1,7 @@
 # AR Virtual Companion (Flutter + FastAPI)
 
+[English](README.md) | [中文版](README_zh.md)
+
 FYP for COMP S456F.
 
 A mobile AI companion app with AR character interaction, realtime voice chat, persona onboarding, diary/journal tracking, and memory-aware backend generation.
@@ -34,7 +36,7 @@ A mobile AI companion app with AR character interaction, realtime voice chat, pe
 - Push notifications:
   - birthday scheduling and mood-based notification triggers.
 
-### Backend (`AI companion Backend huggingface`)
+### Backend (`AI companion Backend hugging face space`)
 - FastAPI app with routers:
   - `routes_chat.py`:
     - `GET /v1/chat/prepare` (cache warmup),
@@ -85,7 +87,7 @@ lib/
 │   └── push_notification_service.dart
 └── widgets/
 
-AI companion Backend huggingface/
+AI companion Backend hugging face space/
 ├── main.py
 ├── routes_chat.py
 ├── routes_memory.py
@@ -115,7 +117,9 @@ flutter pub get
 
 ### Run
 ```bash
-flutter run/flutter --release
+flutter run
+# Production build example:
+# flutter build apk --release
 ```
 
 ### Optional: regenerate launcher icons
@@ -133,7 +137,7 @@ node generate-icons.mjs
 
 ### Create environment and install
 ```bash
-cd "AI companion Backend huggingface"
+cd "..\AI companion Backend hugging face space"
 python -m venv .venv
 # Windows PowerShell
 .venv\Scripts\Activate.ps1
@@ -146,6 +150,7 @@ Set these before running backend:
 - `SUPABASE_KEY`
 - `GEMINI_API_KEY`
 - `GROQ_API_KEY` (optional but recommended)
+- `JINA_API_KEY` (optional; enables semantic memory embeddings)
 - `MEMORY_ADMIN_KEY` (required only for backfill admin endpoints)
 
 ### Start server
@@ -164,9 +169,11 @@ Current frontend service layer points to hosted backend URLs under:
 - `https://samlam123-ai-companion.hf.space`
 - `https://huggingface.co/spaces/samlam123/Ai_companion/tree/main`
 
-If you run backend locally, update the relevant base URL usage in:
+If you run the backend locally, update the relevant base URL usage in:
 - `lib/services/ai_partner_service.dart`
 - `lib/services/websocket_service.dart`
+
+The supported live chat endpoints are `GET /v1/chat/prepare` and `WS /v1/chat/live`. The legacy one-shot voice helpers in `ai_partner_service.dart` require separate backend routes and are not part of the current live-chat API.
 
 ## Current Product Flow
 

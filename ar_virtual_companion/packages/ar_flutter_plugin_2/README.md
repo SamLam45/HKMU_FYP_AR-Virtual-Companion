@@ -1,19 +1,21 @@
 # ar_flutter_plugin_2
+[English](README.md) | [中文版](README_zh.md)
+
 [![pub package](https://img.shields.io/pub/v/ar_flutter_plugin_2.svg)](https://pub.dev/packages/ar_flutter_plugin_2)
 
 
 
-This version is a direct adaptation of the original ar_flutter_plugin (https://pub.dev/packages/ar_flutter_plugin), 
+This version is a direct adaptation of the original [ar_flutter_plugin](https://pub.dev/packages/ar_flutter_plugin),
 migrating the Android component from Sceneform to sceneview_android, enabling the use of animated models.<br>
 This fork was created because the original plugin had not been updated since 2022. <br><br>
 ➡ Changes include an update to the AR Core endpoint, a gradle upgrade, and compatibility with FlutterFlow.<br>
-➡ Migration has been done from sceneform to sceneview_android with the help of Cursor (Ai editor) so maybe some parts are not fully correct (Any contribution is welcome)
+➡ Migration was completed from Sceneform to sceneview_android. Some platform-specific behaviour may still require testing on physical AR devices.
 
 
 <b>❤️ I invite you to collaborate and contribute to the improvement of this plugin.</b><br>
 To contribute code and discuss ideas, [create a pull request](https://github.com/hlefe/ar_flutter_plugin_2/compare), [open an issue](https://github.com/hlefe/ar_flutter_plugin_2/issues/new), or [start a discussion](https://github.com/hlefe/ar_flutter_plugin_2/discussions).
 
-## Fluterflow demo app
+## FlutterFlow demo app
 <table>
 <td>
 <img src="https://avatars.githubusercontent.com/u/74943865?s=48&amp;v=4" width="30" height="30" style="max-width: 100%; margin-bottom: -9px;"> </img>
@@ -24,7 +26,7 @@ To contribute code and discuss ideas, [create a pull request](https://github.com
 </td>
 </table>
 
-### Installing
+### Installing from pub.dev
 
 Add the Flutter package to your project by running:
 
@@ -48,6 +50,18 @@ Or in FlutterFlow :
 <td> Simply add : <br> <b>ar_flutter_plugin_2: ^0.0.3 </b> <br> in pubspecs dependencies of your widget.
 </td>
 </table>
+
+### Using the local fork in this repository
+
+The main AR Virtual Companion app uses this repository's local fork instead of the pub.dev package:
+
+```yaml
+dependencies:
+  ar_flutter_plugin_2:
+    path: packages/ar_flutter_plugin_2
+```
+
+Run `flutter pub get` from the `ar_virtual_companion/` directory after changing the local plugin.
 
 ### Importing
 

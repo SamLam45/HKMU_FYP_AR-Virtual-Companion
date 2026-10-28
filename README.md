@@ -1,5 +1,8 @@
 # AR Virtual Companion (FYP)
 
+[![English](https://img.shields.io/badge/README-English-2563EB?style=for-the-badge)](README.md)
+[![中文](https://img.shields.io/badge/README-%E4%B8%AD%E6%96%87-DC2626?style=for-the-badge)](README_zh.md)
+
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
@@ -13,6 +16,20 @@ A comprehensive mobile AI companion application featuring AR character interacti
 This project was developed as a Final Year Project (FYP) for COMP S456F.
 
 ---
+
+<a id="english"></a>
+
+## English
+
+### Technical Highlights
+
+- Real-time bidirectional audio streaming over WebSocket with Gemini Live.
+- Low-latency RAG memory prefetch while partial speech transcription is received.
+- Multi-source memory orchestration for dynamic system prompt construction.
+- Background extraction of stable facts and rolling 7-day / 30-day summaries.
+- Thread-safe Supabase access with transient connection retry handling.
+- Runtime caching with in-flight request deduplication and cache invalidation.
+- AR avatar placement, animation, object detection, and Supabase Storage loading.
 
 ## 🎥 Video Demo
 
@@ -80,8 +97,14 @@ This repository is structured as a **Monorepo** containing both the Flutter fron
 │   └── pubspec.yaml
 └── AI companion Backend hugging face space/ # Backend API (FastAPI)
     ├── main.py                 # API entry point
-    ├── routes_*.py             # API routers (Chat, Memory, Persona)
-    ├── Dockerfile              # Docker config for Hugging Face deployment
+    ├── routes_*.py             # Chat, Memory, and Persona routers
+    ├── memory_logic.py         # Memory retrieval and prompt assembly
+    ├── ai_logic.py             # Gemini, Groq, persona, and comfort logic
+    ├── embedding_logic.py      # Jina embedding integration
+    ├── cache_logic.py          # Runtime prompt/profile cache
+    ├── database.py             # Supabase access and retries
+    ├── config.py               # Runtime configuration and memory constants
+    ├── Dockerfile              # Hugging Face deployment
     └── requirements.txt        # Python dependencies
 ```
 
@@ -90,6 +113,73 @@ This repository is structured as a **Monorepo** containing both the Flutter fron
 2. **Real-time Interaction**: The app establishes a WebSocket connection (`routes_chat.py`) to the FastAPI backend.
 3. **AI Processing**: The backend forwards audio/text to **Gemini Live**, injecting dynamic system prompts based on the user's selected persona and recent memories.
 4. **Memory Management**: Chat history and daily journal entries are processed by **Groq** to extract stable facts and semantic summaries, embedded using **Jina API**, and stored in Supabase for long-term recall.
+
+### System Architecture Diagram
+
+```mermaid
+flowchart LR
+    USER((User)) --> APP
+
+    subgraph CLIENT["Client Application"]
+        APP["Flutter Mobile App<br/><br/>AR interaction · Voice chat<br/>Journal · Persona settings"]
+    end
+
+    subgraph PLATFORM["Application Platform"]
+        API["FastAPI Backend<br/><br/>REST APIs · WebSocket<br/>Prompt orchestration · Cache"]
+        MEMORY["Memory Orchestration<br/><br/>Context assembly · RAG retrieval<br/>Fact and summary refresh"]
+    end
+
+    subgraph INTELLIGENCE["AI Intelligence Layer"]
+        LIVE["Gemini Live<br/>Real-time voice and text"]
+        ANALYSIS["Groq<br/>Persona analysis<br/>Fact extraction and summaries"]
+        EMBEDDING["Jina AI<br/>Semantic embeddings"]
+    end
+
+    subgraph PERSISTENCE["Data and Storage"]
+        SUPABASE["Supabase<br/><br/>Auth · PostgreSQL · Storage"]
+        TABLES[("Memory Data<br/>Conversations · Journals<br/>Stable facts · 7d/30d summaries")]
+    end
+
+    APP <-->|"WebSocket / REST"| API
+    API --> MEMORY
+    MEMORY --> LIVE
+    MEMORY --> ANALYSIS
+    MEMORY --> EMBEDDING
+    MEMORY <-->|"Read / write context"| TABLES
+    TABLES --> SUPABASE
+    API <-->|"Profile · Auth · Assets"| SUPABASE
+    LIVE --> API
+
+    classDef user fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:2px;
+    classDef client fill:#2563eb,stroke:#1d4ed8,color:#ffffff,stroke-width:2px;
+    classDef platform fill:#4f46e5,stroke:#3730a3,color:#ffffff,stroke-width:2px;
+    classDef intelligence fill:#c2410c,stroke:#9a3412,color:#ffffff,stroke-width:2px;
+    classDef persistence fill:#047857,stroke:#065f46,color:#ffffff,stroke-width:2px;
+    class USER user;
+    class APP client;
+    class API,MEMORY platform;
+    class LIVE,ANALYSIS,EMBEDDING intelligence;
+    class SUPABASE,TABLES persistence;
+    style CLIENT fill:#eff6ff,stroke:#2563eb,stroke-width:2px
+    style PLATFORM fill:#eef2ff,stroke:#4f46e5,stroke-width:2px
+    style INTELLIGENCE fill:#fff7ed,stroke:#c2410c,stroke-width:2px
+    style PERSISTENCE fill:#ecfdf5,stroke:#047857,stroke-width:2px
+```
+
+### Memory Layers
+
+The backend has **6 contextual memory layers**. Runtime cache is a performance layer and is **not** counted as a memory layer.
+
+| Layer | Storage / source | Purpose |
+|---|---|---|
+| 1. Profile & Persona | `profiles`, `personas` | User identity, preferences, selected persona, personality and communication style. |
+| 2. Recent Conversation | `memories` | Keeps the latest conversation turns for immediate continuity. |
+| 3. Semantic Memories (RAG) | `memories` + Jina embeddings + `match_memories` | Retrieves older conversations related to the current topic. |
+| 4. Daily Journal Context | `daily_logs` | Supplies recent emotions, journal content and diary-related context. |
+| 5. Rolling Summaries | `memory_summaries` | Compact `recent_7d` and `recent_30d` conversation summaries. |
+| 6. Stable Facts | `memory_facts` | Long-term facts extracted from repeated evidence, with confidence and evidence counts. |
+
+Memory is assembled into the dynamic system prompt for each chat session. The backend also maintains a short-lived in-memory cache for profiles and prompts to reduce latency; cache invalidation is triggered when relevant user settings change.
 
 ---
 
@@ -134,6 +224,7 @@ Located in `AI companion Backend hugging face space/`.
 | `SUPABASE_KEY` | Yes | Database connection |
 | `GROQ_API_KEY` | Optional | Persona analysis, memory summarization, comfort texts |
 | `JINA_API_KEY` | Optional | Embeddings for semantic memory retrieval |
+| `MEMORY_ADMIN_KEY` | Optional | Protects admin-only memory backfill endpoints |
 
 ### Local Setup & Run
 ```bash
@@ -146,6 +237,8 @@ pip install -r requirements.txt
 
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
+
+For production deployment, set the backend environment variables in the Hugging Face Space settings. Supabase Row Level Security should be configured to isolate each user's profile, journal, and memory records.
 
 ---
 
